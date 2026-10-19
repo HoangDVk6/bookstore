@@ -1,0 +1,22 @@
+digraph UC {
+  rankdir=LR; fontname="DejaVu Sans"; nodesep=0.28; ranksep=1.3; splines=true;
+  node [fontname="DejaVu Sans", fontsize=11];
+  edge [fontname="DejaVu Sans", fontsize=9];
+  guest [label="Khách\nvãng lai", shape=box, style="filled", fillcolor="#f1e8d6", width=1.2];
+  cust  [label="Khách hàng\nđã đăng ký", shape=box, style="filled", fillcolor="#e2ecf7", width=1.2];
+  admin [label="Quản trị viên\n(Admin)", shape=box, style="filled", fillcolor="#f7e2d2", width=1.2];
+  subgraph cluster_sys { label="Hệ thống Website bán sách trực tuyến"; fontsize=13; style=rounded; color="#14213d";
+    node [shape=ellipse, style=filled, fillcolor="white"];
+    g1 [label="Xem trang chủ"]; g2 [label="Xem danh sách sách"]; g3 [label="Tìm kiếm sách"];
+    g4 [label="Lọc sách theo danh mục"]; g5 [label="Xem chi tiết sách"]; g6 [label="Đăng ký tài khoản"];
+    g7 [label="Đăng nhập"]; g8 [label="Quản lý giỏ hàng"];
+    c1 [label="Đăng xuất"]; c2 [label="Đặt hàng (COD)"]; c3 [label="Xem lịch sử\nvà hủy đơn hàng"]; c4 [label="Quản lý thông tin\ntài khoản"];
+    a1 [label="Quản lý danh mục"]; a2 [label="Quản lý sách"]; a3 [label="Quản lý khách hàng"]; a4 [label="Quản lý đơn hàng"]; a5 [label="Xem thống kê"];
+  }
+  guest -> {g1 g2 g3 g4 g5 g6 g7 g8} [arrowhead=none];
+  cust -> {c1 c2 c3 c4} [arrowhead=none];
+  admin -> {a1 a2 a3 a4 a5 g7 c1} [arrowhead=none];
+  cust -> guest [arrowhead=empty, label="  kế thừa", style=dashed];
+  c2 -> g8 [style=dashed, label="<<include>>"];
+  g3 -> g2 [style=dashed, label="<<extend>>"];
+}

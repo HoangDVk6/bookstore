@@ -1,0 +1,23 @@
+
+# Secrets and local configuration
+config/config.php
+
+# Environment variables
+.env
+.env.*
+
+# Dependencies
+vendor/
+node_modules/
+
+# Temporary and log files
+*.log
+.DS_Store
+Thumbs.db
+
+# SQL script contains local credentials
+database/02_create_login.sql
+
+# SQL Server Management Studio local files
+database/.vs/
+.vs/

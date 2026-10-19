@@ -1,0 +1,22 @@
+digraph ERD {
+  rankdir=LR; fontname="DejaVu Sans"; nodesep=0.6; ranksep=1.3; splines=true;
+  node [shape=plain, fontname="DejaVu Sans", fontsize=10]; edge [fontname="DejaVu Sans", fontsize=10, color="#14213d"];
+  Users [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="#14213d"><font color="white"><b>Users</b></font></td></tr>
+   <tr><td align="left"><b>PK</b> UserID INT</td></tr><tr><td align="left">FullName NVARCHAR(100)</td></tr><tr><td align="left">Email NVARCHAR(150) UQ</td></tr><tr><td align="left">PasswordHash NVARCHAR(255)</td></tr>
+   <tr><td align="left">Phone, Address</td></tr><tr><td align="left">Role VARCHAR(10)</td></tr><tr><td align="left">IsActive BIT, CreatedAt</td></tr></table>>];
+  Orders [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="#14213d"><font color="white"><b>Orders</b></font></td></tr>
+   <tr><td align="left"><b>PK</b> OrderID INT</td></tr><tr><td align="left"><b>FK</b> UserID INT</td></tr><tr><td align="left">ReceiverName, Phone</td></tr><tr><td align="left">ShippingAddress, Note</td></tr>
+   <tr><td align="left">PaymentMethod VARCHAR(20)</td></tr><tr><td align="left">ShippingFee DECIMAL(12,0)</td></tr><tr><td align="left">TotalAmount DECIMAL(12,0)</td></tr><tr><td align="left">Status VARCHAR(20)</td></tr><tr><td align="left">CreatedAt, UpdatedAt</td></tr></table>>];
+  OrderDetails [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="#14213d"><font color="white"><b>OrderDetails</b></font></td></tr>
+   <tr><td align="left"><b>PK</b> OrderDetailID INT</td></tr><tr><td align="left"><b>FK</b> OrderID INT</td></tr><tr><td align="left"><b>FK</b> BookID INT</td></tr><tr><td align="left">Quantity INT</td></tr><tr><td align="left">UnitPrice DECIMAL(12,0)</td></tr></table>>];
+  Books [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="#14213d"><font color="white"><b>Books</b></font></td></tr>
+   <tr><td align="left"><b>PK</b> BookID INT</td></tr><tr><td align="left"><b>FK</b> CategoryID INT</td></tr><tr><td align="left">Title NVARCHAR(200)</td></tr><tr><td align="left">Author NVARCHAR(150)</td></tr>
+   <tr><td align="left">Publisher, PublishYear</td></tr><tr><td align="left">Price DECIMAL(12,0)</td></tr><tr><td align="left">Stock INT</td></tr><tr><td align="left">Description NVARCHAR(MAX)</td></tr><tr><td align="left">ImagePath, IsActive, CreatedAt</td></tr></table>>];
+  Categories [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="#14213d"><font color="white"><b>Categories</b></font></td></tr>
+   <tr><td align="left"><b>PK</b> CategoryID INT</td></tr><tr><td align="left">CategoryName NVARCHAR(100) UQ</td></tr><tr><td align="left">Description NVARCHAR(500)</td></tr></table>>];
+  Users -> Orders [label="1 — N\n(đặt)", arrowhead=crow, arrowtail=tee, dir=both];
+  Orders -> OrderDetails [label="1 — N\n(gồm)", arrowhead=crow, arrowtail=tee, dir=both];
+  Books -> OrderDetails [label="1 — N\n(được đặt trong)", arrowhead=crow, arrowtail=tee, dir=both, constraint=false];
+  Categories -> Books [label="1 — N\n(chứa)", arrowhead=crow, arrowtail=tee, dir=both];
+  {rank=same; Orders; Books}
+}

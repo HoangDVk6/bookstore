@@ -1,0 +1,20 @@
+digraph BFD {
+  rankdir=LR; fontname="DejaVu Sans"; nodesep=0.12; ranksep=0.5; splines=ortho;
+  node [shape=box, fontname="DejaVu Sans", fontsize=10, style=filled, fillcolor="white"];
+  root [label="WEBSITE BÁN SÁCH TRỰC TUYẾN", fillcolor="#14213d", fontcolor=white, fontsize=12];
+  a [label="Chức năng\nkhách hàng", fillcolor="#e2ecf7"]; b [label="Chức năng\nquản trị", fillcolor="#f7e2d2"];
+  root -> a; root -> b;
+  a1 [label="Tài khoản"]; a2 [label="Xem và\ntìm sách"]; a3 [label="Giỏ hàng"]; a4 [label="Đặt hàng"];
+  a -> {a1 a2 a3 a4};
+  a1a [label="Đăng ký"]; a1b [label="Đăng nhập /\nđăng xuất"]; a1c [label="Sửa hồ sơ,\nđổi mật khẩu"];
+  a2a [label="Trang chủ"]; a2b [label="Danh sách,\nlọc, tìm kiếm"]; a2c [label="Chi tiết sách"];
+  a3a [label="Thêm vào giỏ"]; a3b [label="Cập nhật\nsố lượng"]; a3c [label="Xóa sản phẩm"];
+  a4a [label="Nhập thông tin\ngiao hàng"]; a4b [label="Lịch sử\nđơn hàng"]; a4c [label="Hủy đơn\nchờ xác nhận"];
+  a1 -> {a1a a1b a1c}; a2 -> {a2a a2b a2c}; a3 -> {a3a a3b a3c}; a4 -> {a4a a4b a4c};
+  b1 [label="Danh mục"]; b2 [label="Sách"]; b3 [label="Khách hàng"]; b4 [label="Đơn hàng"]; b5 [label="Thống kê"];
+  b -> {b1 b2 b3 b4 b5};
+  b1a [label="Thêm/sửa/xóa"]; b2a [label="Thêm/sửa/xóa,\ntải ảnh bìa"]; b2b [label="Ẩn/hiện sách"];
+  b3a [label="Xem, tìm kiếm"]; b3b [label="Khóa/mở khóa"]; b4a [label="Xem chi tiết"]; b4b [label="Cập nhật\ntrạng thái"];
+  b5a [label="Số liệu\ntổng quan"]; b5b [label="Sách bán chạy,\nsắp hết hàng"];
+  b1 -> b1a; b2 -> {b2a b2b}; b3 -> {b3a b3b}; b4 -> {b4a b4b}; b5 -> {b5a b5b};
+}

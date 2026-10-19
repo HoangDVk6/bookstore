@@ -1,0 +1,18 @@
+digraph FLOW {
+  rankdir=TB; fontname="DejaVu Sans"; nodesep=0.5; ranksep=0.45;
+  node [shape=box, style="rounded,filled", fillcolor="#f1e8d6", fontname="DejaVu Sans", fontsize=11];
+  edge [fontname="DejaVu Sans", fontsize=9];
+  b [label="Trình duyệt\n(người dùng)", fillcolor="#e2ecf7"];
+  a [label="Máy chủ web\nApache"];
+  p [label="Bộ thông dịch PHP\n(chạy mã .php)"];
+  d [label="Driver PDO_SQLSRV\n+ ODBC Driver"];
+  s [label="Microsoft\nSQL Server", fillcolor="#f7e2d2"];
+  b -> a [label="1. Yêu cầu HTTP\n(GET/POST)"];
+  a -> p [label="2. Chuyển file .php"];
+  p -> d [label="3. Câu lệnh SQL\n(prepared)"];
+  d -> s [label="4. Truy vấn"];
+  s -> d [label="5. Kết quả", style=dashed];
+  d -> p [style=dashed];
+  p -> a [label="6. Trang HTML", style=dashed];
+  a -> b [label="7. Phản hồi HTTP", style=dashed];
+}

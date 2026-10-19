@@ -1,0 +1,22 @@
+digraph DFD1 {
+  rankdir=LR; fontname="DejaVu Sans"; nodesep=0.35; ranksep=1.5; splines=true;
+  node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+  kh [label="Khách hàng", shape=box, style=filled, fillcolor="#e2ecf7"];
+  ad [label="Quản trị viên", shape=box, style=filled, fillcolor="#f7e2d2"];
+  node [shape=ellipse, style=filled, fillcolor="#f1e8d6"];
+  p1 [label="1. Quản lý\ntài khoản"]; p2 [label="2. Tìm kiếm,\nxem sách"]; p3 [label="3. Quản lý\ngiỏ hàng"]; p4 [label="4. Đặt hàng"];
+  p5 [label="5. Quản lý sách,\ndanh mục"]; p6 [label="6. Quản lý\nđơn hàng"]; p7 [label="7. Thống kê"];
+  node [shape=cds, style=filled, fillcolor="white"];
+  d1 [label="D1 Users"]; d2 [label="D2 Categories"]; d3 [label="D3 Books"]; d4 [label="D4 Orders"]; d5 [label="D5 OrderDetails"];
+  {rank=same; kh; ad}
+  {rank=same; d1; d2; d3; d4; d5}
+  kh -> p1 [label="đăng ký/\nđăng nhập"]; p1 -> kh [label="kết quả"];
+  kh -> p2 [label="từ khóa"]; p2 -> kh [label="danh sách sách"];
+  kh -> p3 [label="thêm/sửa/xóa"]; kh -> p4 [label="thông tin\ngiao hàng"]; p4 -> kh [label="xác nhận đơn"];
+  p1 -> d1 [dir=both]; p2 -> d3 [dir=back]; p2 -> d2 [dir=back]; p3 -> d3 [dir=back, label="giá, tồn kho"];
+  p4 -> d3 [dir=both, label="trừ kho"]; p4 -> d4; p4 -> d5;
+  ad -> p5 [label="dữ liệu sách"]; ad -> p6 [label="trạng thái"]; p7 -> ad [label="báo cáo"]; p6 -> ad [label="danh sách đơn"];
+  p5 -> d3 [dir=both]; p5 -> d2 [dir=both]; p6 -> d4 [dir=both]; p6 -> d5 [dir=back]; p6 -> d3 [label="hoàn kho\nkhi hủy"];
+  p7 -> d4 [dir=back]; p7 -> d5 [dir=back]; p7 -> d3 [dir=back];
+  ad -> p1 [label="khóa/mở\nkhóa", style=dashed];
+}

@@ -1,0 +1,22 @@
+/* Giao diện khu quản trị (dùng chung màu với style.css) */
+.admin-body { background: #f4f1ea; }
+.admin-shell { display: flex; min-height: 100vh; }
+.admin-sidebar { width: 240px; flex: 0 0 240px; background: var(--navy); padding: 18px 14px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.admin-brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-family: 'Merriweather', Georgia, serif; font-weight: 700; margin-bottom: 22px; }
+.admin-sidebar .nav-link { color: #cfc8b4; border-radius: 8px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; }
+.admin-sidebar .nav-link:hover { background: rgba(255, 255, 255, .08); color: #fff; }
+.admin-sidebar .nav-link.active { background: var(--bronze); color: #fff; }
+.admin-sidebar hr { border-color: rgba(255, 255, 255, .15); }
+.admin-main { flex: 1; min-width: 0; }
+.admin-topbar { background: #fff; border-bottom: 1px solid var(--line); padding: 12px 24px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 5; }
+.admin-content { padding: 24px; }
+.stat-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; gap: 14px; align-items: center; height: 100%; }
+.stat-card .icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; background: var(--beige); color: var(--bronze-2); }
+.stat-card .value { font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1.1; }
+.stat-card .label { color: var(--muted); font-size: .85rem; }
+.thumb { width: 44px; border-radius: 4px; }
+@media (max-width: 991px) {
+    .admin-sidebar { position: fixed; left: -260px; z-index: 20; transition: left .2s; }
+    .admin-sidebar.open { left: 0; }
+    .admin-content { padding: 16px; }
+}
